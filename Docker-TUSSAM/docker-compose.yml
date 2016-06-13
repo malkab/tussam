@@ -1,0 +1,10 @@
+postgis:
+  image: geographica/postgis:postgresql-9.5.0-postgis-2.2.1-gdal-2.0.2-patched
+
+  ports:
+    - "5445:5432"
+
+  environment:
+    LOCALE: es_ES
+    PG_CONF: max_connections=5#listen_addresses='*'#shared_buffers=512MB#dynamic_shared_memory_type=posix#log_timezone='UTC'#datestyle='iso, dmy'#timezone='UTC'
+    PG_HBA: "local all all trust#host all all 0.0.0.0/0 trust"
