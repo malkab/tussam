@@ -46,10 +46,14 @@ unique(geom);
 
 -- Turns
 
+-- *_heading fields are 0 for start to end and 1 for end to start
+
 create table network.turn(
   id_node integer,
   id_edge_exit integer,
+  id_edge_exit_heading boolean,
   id_edge_entry integer,
+  id_edge_entry_heading boolean,
   friction double precision);
 
 alter table network.turn

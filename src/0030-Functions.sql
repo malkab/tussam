@@ -85,7 +85,7 @@ begin
     from n
     where
       not(
-	  (startpoint_exit is true and friction_es_exit is null) or
+        (startpoint_exit is true and friction_es_exit is null) or
         (endpoint_exit is true and friction_se_exit is null) or
         (startpoint_entry is true and friction_se_entry is null) or
         (endpoint_entry is true and friction_es_entry is null))
@@ -94,7 +94,9 @@ begin
    loop
      -- Check if turn already exists
      select into _n count(*) from network.turn
-     where id_node=_r.id_node and id_edge_exit=_r.id_edge_exit and id_edge_entry=_r.id_edge_entry;
+     where id_node=_r.id_node and id_edge_exit=_r.id_edge_exit and
+     	   id_edge_entry=_r.id_edge_entry and id_edge_exit_heading=_r.id_edge_exit_heading and
+	   id_edge_entry_heading=_r.id_edge_entry_heading;
 
      if _n=0 then
           insert into network.turn values(_r.id_node, _r.id_edge_exit, _r.id_edge_entry, null);
