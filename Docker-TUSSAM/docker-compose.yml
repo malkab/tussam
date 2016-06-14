@@ -4,7 +4,10 @@ postgis:
   ports:
     - "5445:5432"
 
+  volumes:
+    - /home/git/tussam/src:/init
+
   environment:
     LOCALE: es_ES
     PG_CONF: max_connections=5#listen_addresses='*'#shared_buffers=512MB#dynamic_shared_memory_type=posix#log_timezone='UTC'#datestyle='iso, dmy'#timezone='UTC'
-    PG_HBA: "local all all trust#host all all 0.0.0.0/0 trust"
+    PSQL_SCRIPTS: /init/0099-Full_recovery.sql
